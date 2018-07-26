@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>TGIF</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="CSS/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div id="header">
+    <img src="/images/logo.jpeg" alt="LOGO TGIF">
+    <h1>Transparent Government in Fact</h1>
+  </div>
+  <nav class="navbar navbar-inverse" id="navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+        <a class="navbar-brand" href="#"></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="home-page.html">Home</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="home-page.html">Congres 113 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="senate-data.html">Senate</a></li>
+              <li><a href="house-page.html">House</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Attendance <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="senate-attendance-starter.html">Senate</a></li>
+              <li><a href="house-attendance-starter-page.html">House</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Party Loyalty<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="senate-party-loyalty-starter.html">Senate</a></li>
+              <li class="active"><a href="house-party-loyalty-starter-page.html">House</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="mailto:tgif@tgif.org"><span class="glyphicon glyphicon-envelope"></span> Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header>
+    <div>
+    </div>
+  </header>
+  <!--Table container-->
+  <div class="container">
+    <div id = "app">
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <div div class="col-sm-5">
+          <h2>Party Loyalty</h2>
+          <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively, tend to be the most faithful in voting for their party's nominee for office and legislation that backs their party's agenda. </p>
+        </div>
+        <div class="col-sm-2"></div>
+        <div div class="col-sm-5">
+          <h2>House at a Glance</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Party</th>
+                <th>Number of Reps</th>
+                <th>% Voted with Prty</th>
+              </tr>
+            </thead>
+            <tbody id="app1">
+              <tr v-for="statistic in statistics">
+                <td>{{statistic.party}}</td>
+                <td>{{statistic.num}}</td>
+                <td>{{statistic.votes.toFixed(1)}}</td>
+              </tr>
+              <tr class = "tr">
+               <td>Total</td>
+                <td>{{statistics[0]["num"]+statistics[1]["num"]+statistics[2]["num"]}}</td>
+                <td>{{statistics[2]["average"].toFixed(2)}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <div div class="col-sm-5">
+          <h2>Least Loyal (Bottom 10% of Party)</h2>
+          <table id="table" class="table">
+            <thead id = "thead">
+              <tr>
+                <th>Name</th>
+                <th>Number Party Votes</th>
+                <th>% Party Votes</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+              <tr v-for="least in leastLoyal">
+                <td><a v-bind:href="least.url" target="_blank">{{least.first_name}} {{least.middle_name}} {{least.last_name}}</a></td>
+                <td>{{least.number_party_votes}}</td>
+                <td>{{least.missed_votes_pct.toFixed(2)}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-2"></div>
+        <div div class="col-sm-5">
+          <h2>Most Loyal (Top 10% of Party)</h2>
+          <table id = "table" class="table">
+            <thead id = "thead">
+              <tr>
+                <th>Name</th>
+                <th>Number Party Votes</th>
+                <th>% Party Votes</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+              <tr v-for="most in mostLoyal">
+                <td><a v-bind:href="most.url" target="_blank">{{most.first_name}} {{most.middle_name}} {{most.last_name}}</a></td>
+                <td>{{most.number_party_votes}}</td>
+                <td>{{most.missed_votes_pct.toFixed(2)}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    </div>
+  </div>
+  <div class="footer">
+    <p>@ 2016 TGIF | All Rights Reserved</p>
+  </div>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="statistics.js"></script>
+</body>
+
+</html>

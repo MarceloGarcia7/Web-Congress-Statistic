@@ -1,0 +1,178 @@
+/* LOADER--------------*/
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 150%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border-right: 20px solid #e2e590;
+  border-left: 20px solid #e2e590;
+  border-radius: 40%;
+  border-top: 20px solid rgba(195, 211, 222, 0.56);
+   border-bottom: 20px solid rgba(195, 211, 222, 0.56);
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
+/*------------ TERMINA EL LOADER ----------*/
+
+/*------------ TABLA LAYOUT ----------*/
+
+/*#table{
+ table-layout: inherit;
+}*/
+
+#thead{
+  display: table;
+}
+
+#tbody{
+  height: 350px;
+  overflow: auto;
+  display: inline-block;
+}
+.tr{
+  background-color: rgba(180, 230, 230, 0.9);
+  font-weight: 600;
+}
+td{
+  font-size: 14px;
+  text-align: center;
+  width: 200px;
+}
+tbody{
+  border-left-style:ridge;
+  border-bottom-style:outset;
+}
+thead th{
+  font-size: 12px;
+  color: white;
+  width: 200px;
+  border-radius: 55px 0px 0px 0px;
+  text-align: center;
+  background: linear-gradient(#0a3557, #0b2539);
+}
+
+/*-------------------------------------*/
+
+#home{
+  display: flex;
+  flex-direction: row;
+  align-items:  center;
+  
+}
+.col{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.col1{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: wrap;
+  flex: 1;  
+}
+
+.footer{
+  background-color: #222;
+  color: #9d9d9d;
+  font-size: 14px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  height: 50px;
+  text-align: center;
+  padding-top: 15px;
+}
+#header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+   height: 120px;
+  background: linear-gradient(#970c2d, #390612);
+  /*background-image: url(/images/marine-blue-star-fabric-by-Timeless-Treasures-USA-186515-1.JPG);
+  background: linear-gradient(#0a3557, #234864);
+  background-color: #970c2d;
+   background-color: #222;*/
+  border-radius: 3px 3px 0px 0px;
+}
+
+
+#header h1{
+  font-size: 45px;
+  display: flex;
+  align-content: center;
+  margin-left: 100px;
+  font-family: "Helvetica Neue";
+  font-weight: 700;
+  color: white;
+}
+#header img{
+  border-radius: 20px;
+  margin-left: 10px;
+}
+.container{
+  min-height: 420px;
+}
+
+#navbar{
+  /*background: linear-gradient(#390612,#970c2d);*/
+  background-color: #222;
+  border-radius: 0px 0px 3px 3px; 
+}
+
+.img-circle {
+  z-index: 1;
+  position: absolute;
+  margin: 0px 0px 0px 20px;
+}
+
+h2{
+  font-weight: 900; 
+}
+.col-sm-5 h2, .col-sm-6 h2{
+  font-size: 20px;
+  text-align: center;
+  font-weight: 700;
+}
+
+
+
+
