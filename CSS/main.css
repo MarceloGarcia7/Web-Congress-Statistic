@@ -56,9 +56,7 @@
 
 /*------------ TABLA LAYOUT ----------*/
 
-/*#table{
- table-layout: inherit;
-}*/
+
 
 #thead{
   display: table;
@@ -127,10 +125,6 @@ thead th{
   align-items: center;
    height: 120px;
   background: linear-gradient(#970c2d, #390612);
-  /*background-image: url(/images/marine-blue-star-fabric-by-Timeless-Treasures-USA-186515-1.JPG);
-  background: linear-gradient(#0a3557, #234864);
-  background-color: #970c2d;
-   background-color: #222;*/
   border-radius: 3px 3px 0px 0px;
 }
 
@@ -153,7 +147,6 @@ thead th{
 }
 
 #navbar{
-  /*background: linear-gradient(#390612,#970c2d);*/
   background-color: #222;
   border-radius: 0px 0px 3px 3px; 
 }
@@ -172,7 +165,3 @@ h2{
   text-align: center;
   font-weight: 700;
 }
-
-
-
-

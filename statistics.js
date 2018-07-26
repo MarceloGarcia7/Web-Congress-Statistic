@@ -1,10 +1,7 @@
-//var members = data["results"][0]["members"]; // ACCEDER AL ARRAY EN POSICION "MEMBERS"
-
-//console.log(data["results"][0]["members"]); // CONSOLE VER POSICION CORRECTA
 
 var serverData;
 var members;
-//var statisticsTable;
+
 
 
 var app = new Vue({
@@ -21,10 +18,7 @@ var app = new Vue({
   }
 });
 
-
-// ACA VAN LAS VARIABLES --------------------------
 var statistics = {
-
   "table1": [
     {
       party: "Republicans",
@@ -58,7 +52,7 @@ var totInd = 0;
 var totale = 0; //var statisticsTable;
 
 var leastEngegadMembers = []; //ARRAY CON Least Engaged-----------
-var mostEngagedMembers = []; //ARRAY CON MOST Engaged-------- MIRAR DUPLICADO !!!!!---
+var mostEngagedMembers = []; //ARRAY CON MOST Engaged-------- 
 var leastEngagedTable = document.getElementById("least");
 var mostEngagedTable = document.getElementById("most");
 
@@ -83,8 +77,6 @@ if (document.location.pathname == "/senate-party-loyalty-starter.html" || docume
 
 
 function start(data) {
-  console.log(1);
-
   var fetchConfig =
     fetch(data, {
       method: "GET",
@@ -93,20 +85,16 @@ function start(data) {
       })
     })
     .then(onDataFetched)
-    .catch(onDataFetchFailed);
-  console.log(3);
+    .catch(onDataFetchFailed); 
 }
-
 function onDataFetched(response) {
   response.json()
-
     .then(onConversionToJsonSuccessful)
     .catch(onConversionToJsonFailed);
-  console.log(2);
 }
 
 function onDataFetchFailed(error) {
-  console.log("I have failed in life.", error);
+  console.log("failed", error);
 }
 
 function onConversionToJsonSuccessful(json) {
@@ -118,8 +106,6 @@ function onConversionToJsonSuccessful(json) {
   app.members = app.mainMembers;
   app.statistics = statistics["table1"];
   app.totale = totale;
-
-  console.log(app.members);
 
   // ----------LLAMAR LAS FUNCIONES --------------------
 
@@ -136,7 +122,6 @@ function onConversionToJsonSuccessful(json) {
   statistics["table1"][1]["num"] = totDem; // pusho into ARRAY
   statistics["table1"][2]["num"] = totInd;
   totale = totDem + totRep + totInd // definirla luefo de tener los valos de las variables 
-  // createTable();
 
 
   if (document.location.pathname == "/senate-party-loyalty-starter.html" || document.location.pathname == "/house-party-loyalty-starter-page.html") {
@@ -146,8 +131,6 @@ function onConversionToJsonSuccessful(json) {
     leastLoyalMembers(members);
     app.mostLoyal = mostLoyal;
     mostLoyalMembers(members);
-    // creatTableLoyality(leastLoyal, leastLoyalTable);
-    //creatTableLoyality(mostLoyal, mostLoyalTable);
 
   } else if (document.location.pathname == "/senate-attendance-starter.html" || document.location.pathname == "/house-attendance-starter-page.html") {
 
@@ -156,23 +139,15 @@ function onConversionToJsonSuccessful(json) {
     engegadMembers(members);
     app.mostEngagedMembers = mostEngagedMembers;
     mengegadMembers(members);
-    // creatTableLeast(leastEngegadMembers, leastEngagedTable);
-    //creatTableLeast(mostEngagedMembers, mostEngagedTable);
-
   }
-
-
 }
 
 function onConversionToJsonFailed() {
-  console.log("Not a json mate!");
+  console.log("Not a json");
 }
 
-//-------------------------------------------------
 // -----------GET VOTES PARTY ------------------------
 function getVotesParty(array) {
-
-  //var totMem = 0; /// TOTALES DE MIEMBROS CAMARA
 
   for (var i = 0; i < array.length; i++) {
 
@@ -197,81 +172,13 @@ function getVotesParty(array) {
 
 // -----------GET PORCENT ------------------------
 function getPorcent(array) {
-
   var porcent = 0;
   for (var i = 0; i < array.length; i++) {
-
     porcent += array[i] / array.length;
-
   }
-  console.log("pct", porcent);
   return porcent;
-
 }
 
-//------------------------------------------------------
-
-// --- CREAMOS LA TABLA ------------------------
-/*
-function createTable() {
-
-  statisticsTable = statistics["table1"];
-  var printTable = document.getElementById("tablaGeneral");
-
-
-  for (var i = 0; i < statisticsTable.length; i++) {
-
-    var tr = document.createElement("tr");
-    printTable.appendChild(tr);
-
-    var td = document.createElement("td");
-    tr.appendChild(td);
-    td.innerHTML = statisticsTable[i]["party"];
-    var td = document.createElement("td");
-    tr.appendChild(td);
-    td.innerHTML = statisticsTable[i]["num"];
-    var td = document.createElement("td");
-    tr.appendChild(td);
-    td.innerHTML = statisticsTable[i]["votes"].toFixed(2);
-
-
-  }
-  var tr1 = document.createElement("tr");
-  printTable.appendChild(tr1);
-  var td1 = document.createElement("td");
-  tr1.appendChild(td1);
-  td1.innerHTML = "Total";
-  var td1 = document.createElement("td");
-  tr1.appendChild(td1);
-  td1.innerHTML = totale;
-  var td1 = document.createElement("td");
-  tr1.appendChild(td1);
-  td1.innerHTML = statisticsTable[2]["average"].toFixed(2);
- // var td1 = document.createElement("td");
-  //tr1.appendChild(td1);
-  //td1.innerHTML = ((statistics.average_vote_partyI + //statistics.average_vote_partyD + //statistics.average_vote_partyR) / 2).toFixed(2);
-
-}
-*/
-//-----------------Least Engaged CONTROL-----------------------//
-/*
-var control = [];
-
-//control.sort()  // aca SORT POR EL DATO QUE NOS INTERESA)
-
-for (var i = 0; i < members.length; i++) {
-  if (members[i]["missed_votes_pct"] == 0.42) // control de duplicados 
-    control.push(members[i]);
-}
- // ---------------------------------------------------------------------
-  for (var i = 0; i < (members.length * 15) / 100; i++)
-  for (var j = 0; j < leastEngegadMembers.length; j++)
-    if (members[i]["missed_votes_pct"] == 0.42 && members[i]["first-name"] !== leastEngegadMembers[j]["first-name"]) {
-
-      control.push(members[i]);
-    }
-}
-*/
 
 //-----------------Least Engaged (Bottom 10% Attendance)-----------------------//
 
@@ -312,94 +219,9 @@ function mengegadMembers(arrayMembers) {
   }
 }
 
-//------------------------------------------------------------------------
-console.log("-----LEAST  Engaged-------------");
-console.log(leastEngegadMembers);
-console.log("------Most Engaged-----------");
-console.log(mostEngagedMembers);
 
-//------------ ORDENAR UN ARRAY POR UN KEY --------------------------
+function newKeyinArray(arrayMembers) { 
 
-var employees = []
-employees[0] = {
-  name: "George",
-  age: 32,
-  retiredate: "March 12, 2014"
-}
-employees[1] = {
-  name: "Edward",
-  age: 77,
-  retiredate: "June 2, 2023"
-}
-employees[2] = {
-  name: "Christine",
-  age: 58,
-  retiredate: "December 20, 2036"
-}
-employees[3] = {
-  name: "Sarah",
-  age: 22,
-  retiredate: "April 30, 2020"
-}
-
-employees.sort(function (a, b) {
-  return a.age - b.age
-})
-
-//--------------CREAR TABLA LEAST - MOST ENGAGED------------------------------------
-/*
-function creatTableLeast(arrayMembers, varTable) {
-
-
-  varTable.innerHTML = " ";
-
-  for (var i = 0; i < arrayMembers.length; i++) {
-
-    var tr = document.createElement("tr");
-    varTable.appendChild(tr);
-    var td = document.createElement("td");
-    var a = document.createElement("a");
-    tr.appendChild(td); // CREA UN TD PASO SIGUIENTE INSERTAR UN <A> EN EL TD
-    td.appendChild(a);
-
-
-    // INSERTAR LOS NAMES Y CAMBIARLE EL ATRIBUTO AS A LINK
-    var nulo = "null";
-    if (arrayMembers[i]["middle_name"] == nulo) {
-      a.innerHTML = (arrayMembers[i]["first_name"] + " " + arrayMembers[i]["middle_name"] + " " + arrayMembers[i]["last_name"]);
-    } else {
-      a.innerHTML = (arrayMembers[i]["first_name"] + " " + arrayMembers[i]["last_name"]);
-    }
-    // CAMBIO EL ATRIBUTO
-    a.setAttribute("href", arrayMembers[i]["url"]);
-    a.setAttribute("target", "_blank");
-
-
-    /// CREAR DIFERENTES TD PARA CADA ENCABEZADO
-
-    var td1 = document.createElement("td"); // td para party
-    tr.appendChild(td1);
-    td1.innerHTML = (arrayMembers[i]["missed_votes"]);
-
-    var td2 = document.createElement("td"); // td para state
-    tr.appendChild(td2);
-    td2.innerHTML = (arrayMembers[i]["missed_votes_pct"]);
-
-  }
-
-}
-*/
-
-//--------------- LEAST AND MOST LOYAL MEMBERS ------------------------
-
-//---------- CREAR UNA FUNCION PARA QUE NO SEA UNDEFINED -----------
-
-
-
-function newKeyinArray(arrayMembers) { // CREAR UNA FUNCION PARA QUE NO SEA UNDEFINED -----------
-
-
-  console.log("hola", arrayMembers);
   for (var i = 0; i < arrayMembers.length; i++) { // CREAMOS UN NUEVO KEY EN EL ARRAY CON EL RESULTADO SOLICITADO
     arrayMembers[i]["number_party_votes"] = (Math.round)(((arrayMembers[i]["total_votes"] - arrayMembers[i]["missed_votes"]) * arrayMembers[i]["votes_with_party_pct"]) / 100);
   }
@@ -446,48 +268,3 @@ function mostLoyalMembers(arrayMembers) {
 
   }
 }
-
-console.log("-----LEAST  LOYAL-------------");
-console.log(leastLoyal);
-console.log("------MOST LOYAL-----------");
-console.log(mostLoyal);
-
-//------------ CREAMOS LA TABLA -------------------
-/*
-function creatTableLoyality(arrayMembers, varTableLoyal) {
-
-  varTableLoyal.innerHTML = " ";
-
-  for (var i = 0; i < arrayMembers.length; i++) {
-
-    var tr = document.createElement("tr");
-    varTableLoyal.appendChild(tr);
-    var td = document.createElement("td");
-    var a = document.createElement("a");
-    tr.appendChild(td); // CREA UN TD PASO SIGUIENTE INSERTAR UN <A> EN EL TD
-    td.appendChild(a);
-
-    //----------- INSERTAR LOS NAMES Y CAMBIARLE EL ATRIBUTO AS A LINK
-    var nulo = "null";
-    if (arrayMembers[i]["middle_name"] !== nulo) {
-      a.innerHTML = (arrayMembers[i]["first_name"] + " " + arrayMembers[i]["middle_name"] + " " + arrayMembers[i]["last_name"]);
-    } else {
-      a.innerHTML = (arrayMembers[i]["first_name"] + " " + arrayMembers[i]["last_name"]);
-    }
-    //------------ CAMBIO EL ATRIBUTO
-    a.setAttribute("href", arrayMembers[i]["url"]);
-    a.setAttribute("target", "_blank");
-
-    //------------ CREAR DIFERENTES TD PARA CADA ENCABEZADO
-    var td1 = document.createElement("td"); // td para state
-    tr.appendChild(td1);
-    td1.innerHTML = (arrayMembers[i]["number_party_votes"]);
-
-    var td2 = document.createElement("td"); // td para party
-    tr.appendChild(td2);
-    td2.innerHTML = (arrayMembers[i]["votes_with_party_pct"]);
-
-  }
-
-}
-*/
